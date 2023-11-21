@@ -6,6 +6,7 @@ import {
   TrendingUp,
   DynamicFeed,
 } from "@material-ui/icons";
+import StackedBarChart from "@mui/icons-material/StackedBarChart";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
@@ -25,6 +26,12 @@ export default function Sidebar() {
               <li className="sidebarListItem">
                 <Apartment className="sidebarIcon" />
                 Branchalytics
+              </li>
+            </Link>
+            <Link to="/service_requests" className="link">
+              <li className="sidebarListItem">
+                <StackedBarChart className="sidebarIcon" />
+                Service Requests
               </li>
             </Link>
             <Link to="/feedback" className="link">
