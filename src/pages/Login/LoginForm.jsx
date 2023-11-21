@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate} from "react-router-dom";
+import { useDispatch} from "react-redux";
 import axios from "axios";
+import { setAuthData } from "../../redux/store";
 import "./LoginForm.css";
 
 const LoginForm = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
@@ -30,6 +33,8 @@ const LoginForm = () => {
       const token = response.data.token;
       const branchid = response.data.branchid;
       const role = response.data.role;
+
+      dispatch(setAuthData(token, branchid, role));
 
       if (role === "admin") {
         navigate("/admin"); // route to head-admin page
