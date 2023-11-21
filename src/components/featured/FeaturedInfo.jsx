@@ -1,12 +1,13 @@
 import "./featuredInfo.css";
-import { Person, ShowChart } from "@material-ui/icons";
 
 const FeaturedInfo = () => {
   return (
     <div className="featured">
       <div className="featuredItem">
         <span className="featuredTitle">
-          <Person className="icon employeeIcon" />
+          <span className="icon employeeIcon">
+            <i class="ri-user-fill"></i>
+          </span>
           Employees
         </span>
         <div className="featuredData">
@@ -16,7 +17,9 @@ const FeaturedInfo = () => {
 
       <div className="featuredItem">
         <span className="featuredTitle">
-          <Person className="icon customerIcon" />
+          <span className="icon customerIcon">
+            <i class="ri-user-fill"></i>
+          </span>
           Customers
         </span>
         <div className="featuredData">
@@ -26,7 +29,9 @@ const FeaturedInfo = () => {
 
       <div className="featuredItem">
         <span className="featuredTitle">
-          <ShowChart className="icon salesIcon" />
+          <span className="icon salesIcon">
+            <i class="ri-line-chart-fill"></i>
+          </span>
           Sales
         </span>
         <div className="featuredData">

@@ -1,5 +1,4 @@
 import React from "react";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
 import "./Topbar.css";
 import { Link } from "react-router-dom";
 const Topbar = () => {
@@ -13,15 +12,15 @@ const Topbar = () => {
         </Link>
         <div className="topRight">
           <div className="topbarIconContainer">
-            <NotificationsNone />
+            <i class="ri-notification-fill"></i>
             <span className="topIconBadge">2</span>
           </div>
           <div className="topbarIconContainer">
-            <Language />
+            <i class="ri-global-line"></i>
             <span className="topIconBadge">2</span>
           </div>
           <div className="topbarIconContainer">
-            <Settings />
+            <i class="ri-settings-4-fill"></i>
           </div>
           <img
             src="https://i.pinimg.com/736x/a0/1b/77/a01b7746d59d485b10cc63e8ce7ec666.jpg"

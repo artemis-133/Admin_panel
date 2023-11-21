@@ -1,12 +1,5 @@
 import "./sidebarbranch.css";
-import {
-  LineStyle,
-  Apartment,
-  Timeline,
-  TrendingUp,
-  DynamicFeed,
-} from "@material-ui/icons";
-import StackedBarChart from "@mui/icons-material/StackedBarChart";
+
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
@@ -18,36 +11,36 @@ export default function Sidebar() {
           <ul className="sidebarList">
             <Link to="/" className="link">
               <li className="sidebarListItem">
-                <LineStyle className="sidebarIcon" />
+                <span className="sidebarIcon">
+                  <i class="ri-align-justify"></i>
+                </span>
                 Home
               </li>
             </Link>
             <Link to="/branchalytics" className="link">
               <li className="sidebarListItem">
-                <Apartment className="sidebarIcon" />
+                <span className="sidebarIcon">
+                  <i class="ri-building-line"></i>
+                </span>
                 Branchalytics
               </li>
             </Link>
             <Link to="/service_requests" className="link">
               <li className="sidebarListItem">
-                <StackedBarChart className="sidebarIcon" />
+                <span className="sidebarIcon">
+                  <i class="ri-file-chart-line"></i>
+                </span>
                 Service Requests
               </li>
             </Link>
             <Link to="/feedback" className="link">
               <li className="sidebarListItem">
-                <DynamicFeed className="sidebarIcon" />
+                <span className="sidebarIcon">
+                  <i class="ri-feedback-fill"></i>
+                </span>
                 Feedback
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
-            </li>
           </ul>
         </div>
       </div>
