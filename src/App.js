@@ -1,10 +1,12 @@
+// App.js
+import React from "react";
+// import { BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
+import Layout from "./components/Layout/Layout";
+// import Routers from "./routers/Routers";
 
-import './App.css';
-import LoginForm from './pages/LoginForm';
-function App() {
-  return (
-    <LoginForm/>
-  );
-}
+const App = () => {
+  return <Layout />;
+};
 
 export default App;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/LoginForm.css"; // Import the CSS file where you'll define the styles
+import "./LoginForm.css"; // Import the CSS file where you'll define the styles
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -34,7 +34,7 @@ const LoginForm = () => {
           </p>
         </section>
       ) : (
-        <div className="container">
+        <div className="lcontainer">
           <div className="login-box">
             <h2>Admin-Login</h2>
             <form onSubmit={handleSubmit}>

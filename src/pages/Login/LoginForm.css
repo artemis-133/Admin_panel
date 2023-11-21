@@ -8,7 +8,7 @@
 }
 
 /* Styles for the login container */
-.container {
+.lcontainer {
   display: flex;
   justify-content: center;
   align-items: center;
