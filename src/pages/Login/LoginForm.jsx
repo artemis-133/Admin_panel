@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import "./LoginForm.css"; // Import the CSS file where you'll define the styles
+import { useNavigate} from "react-router-dom";
+import axios from "axios";
+import "./LoginForm.css";
 
 const LoginForm = () => {
+    const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
@@ -14,13 +17,35 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
+
+    const data = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const response = await axios.post("backend-url/authenticate", data); //call authenticator to get token
+      const token = response.data.token;
+      const branchid = response.data.branchid;
+      const role = response.data.role;
+
+      if (role === "admin") {
+        navigate("/admin"); // route to head-admin page
+      } else if (role === "manager") {
+        navigate(`/manager/${branchid}`); // route to branch admin page
+      } 
+        setSuccess(true);
+
+
+    } catch (error) {
+      console.error("Authentication failed:", error.message);
+      setSuccess(false);
+    }
+
     setUsername("");
     setPassword("");
-    setSuccess(true);
   };
 
   return (
