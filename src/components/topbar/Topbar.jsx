@@ -5,11 +5,9 @@ const Topbar = () => {
   return (
     <div className="topbar">
       <div className="topbarWrapper">
-        <Link to="/" className="link">
-          <div className="topLeft">
-            <span className="logo">Branch-Admin</span>
-          </div>
-        </Link>
+        <div className="topLeft">
+          <span className="logo">Branch-Admin</span>
+        </div>
         <div className="topRight">
           <div className="topbarIconContainer">
             <i class="ri-notification-fill"></i>
