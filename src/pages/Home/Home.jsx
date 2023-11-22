@@ -2,6 +2,7 @@ import Chart from "../../components/Chart/Chart";
 import "./Home.css";
 import { userData } from "../../dummyData";
 import BasicInfo from "../../components/featured/featuredData";
+import { DataForChart } from "../../components/Chart/DataForChart";
 // import WidgetSm from "../../components/widgetSm/WidgetSm";
 // import WidgetLg from "../../components/widgetLg/WidgetLg";
 
@@ -9,7 +10,7 @@ export default function Home() {
   return (
     <div className="home">
       <BasicInfo />
-      <Chart data={userData} title="Sales Analytics" dataKey="sales" />
+      <Chart  title="Sales Analytics" dataKey="sales" />
       {/* <div className="homeWidgets">
         <WidgetSm />
         <WidgetLg />

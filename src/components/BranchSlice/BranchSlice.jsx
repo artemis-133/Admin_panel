@@ -8,6 +8,7 @@ const BranchSlice = createSlice({
     branchId: null,
     role: null,
     branchIdSelectedByHeadAdmin: null,
+    chartdata:[]
   },
   reducers: {
     setAuthData: (state, action) => {
@@ -25,6 +26,9 @@ const BranchSlice = createSlice({
       state.branchId = null;
       state.branchIdSelectedByHeadAdmin = null;
     },
+    setChartData:(state,action)=>{
+      state.chartdata=action.payload;
+    }
   },
 });
 
