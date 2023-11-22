@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate} from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import axios from "axios";
-import { setAuthData } from "../../redux/store";
+import { setAuthData } from "../../components/BranchSlice/BranchSlice";
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -22,7 +22,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    navigate("/layout");
     const data = {
       username: username,
       password: password,
@@ -34,16 +34,14 @@ const LoginForm = () => {
       const branchid = response.data.branchid;
       const role = response.data.role;
 
-      dispatch(setAuthData(token, branchid, role));
+      dispatch(setAuthData(response.data));
 
       if (role === "admin") {
         navigate("/admin"); // route to head-admin page
       } else if (role === "manager") {
         navigate(`/manager/${branchid}`); // route to branch admin page
-      } 
-        setSuccess(true);
-
-
+      }
+      setSuccess(true);
     } catch (error) {
       console.error("Authentication failed:", error.message);
       setSuccess(false);

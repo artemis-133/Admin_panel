@@ -1,45 +1,10 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+import BranchSlice from "../components/BranchSlice/BranchSlice";
 
-// Initial state
-const initialState = {
-  token: "agshshjs",
-  branchId: null,
-  role: null,
-};
-
-// Reducer
-const authReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "SET_AUTH_DATA":
-      return {
-        ...state,
-        token: action.payload.token,
-        branchId: action.payload.branchId,
-        role: action.payload.role,
-      };
-    case "CLEAR_AUTH_DATA":
-      return {
-        token: null,
-        branchId: null,
-        role: null
-      }
-    default:
-      return state;
-  }
-};
-
-// Action creators
-export const setAuthData = (token, branchId, role) => ({
-  type: "SET_AUTH_DATA",
-  payload: { token, branchId, role },
+const store = configureStore({
+  reducer: {
+    branch: BranchSlice,
+  },
 });
-
-export const clearAuthData = () => ({
-  type: "CLEAR_AUTH_DATA",
-});
-
-// Store
-const store = createStore(authReducer, applyMiddleware(thunk));
 
 export default store;
