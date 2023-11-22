@@ -1,7 +1,8 @@
 import React from "react";
 import Topbar from "../topbar/Topbar";
 import Sidebarbranch from "../sidebar/sidebarbranch";
-import Routers from "../../routers/Routers";
+
+import { Link, Outlet } from "react-router-dom";
 import "./Layout.css";
 const Layout = ({ children }) => {
   return (
@@ -12,7 +13,7 @@ const Layout = ({ children }) => {
           <Sidebarbranch />
         </div>
         <div className="maincontent">
-          <Routers />
+          <Outlet />
         </div>
       </div>
     </div>
