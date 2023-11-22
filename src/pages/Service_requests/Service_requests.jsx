@@ -95,7 +95,13 @@ const Service_requests = () => {
               <td>{service.end_time}</td>
               <td>{service.status}</td>
               <td>
-                <button onClick={() => deleteData(service.id)}>Delete</button>
+                <td>
+                  <i
+                    className="ri-delete-bin-line"
+                    onClick={() => deleteData(service.id)}
+                    style={{ cursor: "pointer" }}
+                  ></i>
+                </td>
                 <button onClick={() => updateData(service.id)}>Edit</button>
               </td>
             </tr>

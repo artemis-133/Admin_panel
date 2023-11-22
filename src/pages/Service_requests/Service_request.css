@@ -1,5 +1,6 @@
 .tablecontainer{
     display: flex;
+    flex-direction: column;
     padding: 10px
 }
 .service-table {
@@ -54,8 +55,9 @@
 /* Style the filter dropdown container */
 .filter-dropdown {
     margin-bottom: 20px;
-  margin-left: 15px;
+    margin-left: 15px;
     display: flex;
+    justify-content: end;
     align-items: center;
   }
   
@@ -75,5 +77,9 @@
   }
   
   /* Align the filter dropdown to the left with margin */
-  
+  .ri-delete-bin-line{
+    color: red;
+    size: 5px;
+
+  }
   
