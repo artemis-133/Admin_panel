@@ -2,7 +2,6 @@ import Chart from "../../components/Chart/Chart";
 import "./Home.css";
 import { userData } from "../../dummyData";
 import BasicInfo from "../../components/featured/featuredData";
-import { DataForChart } from "../../components/Chart/DataForChart";
 // import WidgetSm from "../../components/widgetSm/WidgetSm";
 // import WidgetLg from "../../components/widgetLg/WidgetLg";
 
