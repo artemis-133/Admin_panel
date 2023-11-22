@@ -6,7 +6,6 @@ import "./Layout.css";
 const Layout = ({ children }) => {
   return (
     <div>
-      <Topbar />
       <div className="layout_conti">
         <div classname="sidebar">
           <Sidebarbranch />

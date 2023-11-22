@@ -1,13 +1,21 @@
 import React from "react";
 import "./Topbar.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Topbar = () => {
+
+  const role = useSelector((state)=>state.branch.role);
+
   return (
     <div className="topbar">
       <div className="topbarWrapper">
         <Link to="/" className="link">
           <div className="topLeft">
-            <span className="logo">Branch-Admin</span>
+            <span className="logo">
+              {
+                role==='admin'?"Head-Admin":"Branch-Admin"
+              }
+            </span>
           </div>
         </Link>
         <div className="topRight">
