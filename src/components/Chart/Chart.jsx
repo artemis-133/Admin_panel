@@ -12,23 +12,38 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { countDataByMonth } from "../../dummyData";
+import { format, parse } from "date-fns";
 
 export default function Chart({ title, dataKey, grid }) {
+  const [backend, setBack] = useState([]);
 
-const [backend,setBack] =useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:3501/chartdata").then((response) => {
+      setBack(response.data);
+    });
+  }, []);
 
-useEffect(()=>{
-  axios.get("http://localhost:3500/chartdata").then((response)=>{
-    setBack(response.data);
-  }); 
-},[]);
+  const countsByMonth = countDataByMonth(backend);
+  const allMonths = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-//backend url to get starttime and endtime of service requests
-    
-console.log(backend);
-const countsByMonth = countDataByMonth(backend);
-const data = countsByMonth;
-console.log(data);
+  // Initialize counts for all months, setting counts to 0 if not present in backend data
+  const data = allMonths.map((month) => ({
+    month,
+    [dataKey]: countsByMonth[month] || 0,
+  }));
 
   return (
     <div className="chart">

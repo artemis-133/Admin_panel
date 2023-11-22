@@ -18,14 +18,11 @@ const App = () => {
     <Routers>
       <Routes>
         <Route path="/" element={<Structure />}>
-          <Route path="/layout" element={<Layout />}>
-            <Route path="/layout/branchalytics" element={<Branchalytics />} />
-            <Route path="/layout/feedback" element={<Feedback />} />
-            <Route
-              path="/layout/service_requests"
-              element={<Service_requests />}
-            />
-            <Route path="/layout/home" element={<Home />} />
+          <Route path="layout/*" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="branchalytics" element={<Branchalytics />} />
+            <Route path="service_requests" element={<Service_requests />} />
+            <Route path="feedback" element={<Feedback />} />
           </Route>
           <Route path="/admin" element={<Adminpage />} />
           <Route path="/signin" element={<LoginForm />} />s

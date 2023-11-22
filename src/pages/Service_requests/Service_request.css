@@ -1,7 +1,7 @@
 .tablecontainer{
     display: flex;
     flex-direction: column;
-    padding: 10px
+    padding: 20px
 }
 .service-table {
     width: 100%;
@@ -54,11 +54,11 @@
 
 /* Style the filter dropdown container */
 .filter-dropdown {
+    flex-direction: column;
     margin-bottom: 20px;
-    margin-left: 15px;
     display: flex;
     justify-content: end;
-    align-items: center;
+    align-items: end;
   }
   
   /* Style the label for the dropdown */
@@ -74,6 +74,7 @@
     border-radius: 4px;
     border: 1px solid #ccc;
     cursor: pointer;
+    text-align: center;
   }
   
   /* Align the filter dropdown to the left with margin */
@@ -82,4 +83,17 @@
     size: 5px;
 
   }
+  /* CSS file */
+.completed {
+  color: green; /* Set color for Completed status */
+}
+
+.pending {
+  color: rgb(255, 187, 0); /* Set color for Pending status */
+}
+
+.assigned {
+  color: red; /* Set color for Assigned status */
+}
+
   

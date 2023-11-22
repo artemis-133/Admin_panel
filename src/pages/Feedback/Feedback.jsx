@@ -1,7 +1,90 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const Feedback = () => {
-  return <div>Feedback</div>;
+import axios from "axios";
+import "./Feedback.css"; // Import the CSS file
+
+const FeedbackTable = () => {
+  const [feedbackData, setFeedbackData] = useState([]); // Initialize feedbackData as an empty array
+  const [filterRating, setFilterRating] = useState("All");
+
+  const fetchFeedbackData = () => {
+    axios
+      .get(" http://localhost:3502/feedbackdata") // Replace the URL with your API endpoint
+      .then((response) => {
+        setFeedbackData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchFeedbackData();
+  }, []);
+
+  const handleFilterChange = (event) => {
+    setFilterRating(event.target.value);
+  };
+
+  const filteredFeedbackData = feedbackData.filter((feedback) => {
+    if (filterRating === "All") {
+      return true;
+    } else {
+      return feedback.rating === parseInt(filterRating);
+    }
+  });
+
+  const renderStars = (rating) => {
+    const starElements = [];
+    for (let i = 0; i < rating; i++) {
+      starElements.push(<i class="ri-star-fill"></i>);
+    }
+    return starElements;
+  };
+
+  return (
+    <div className="tableContainer">
+      <div className="filterDropdown">
+        <label htmlFor="ratingFilter">Filter by Rating</label>
+        <select
+          id="ratingFilter"
+          value={filterRating}
+          onChange={handleFilterChange}
+          className="dropdownSelect"
+        >
+          <option value="All">All</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          {/* Add other rating options as needed */}
+        </select>
+      </div>
+      <table className="feedbackTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Customer Name</th>
+            <th>Employee Name</th>
+            <th>Service Name</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredFeedbackData.map((feedback) => (
+            <tr key={feedback.id}>
+              <td>{feedback.id}</td>
+              <td>{feedback.customer_name}</td>
+              <td>{feedback.employee_name}</td>
+              <td>{feedback.service_name}</td>
+              <td>{renderStars(feedback.rating)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
-export default Feedback;
+export default FeedbackTable;

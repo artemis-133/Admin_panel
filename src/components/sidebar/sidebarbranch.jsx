@@ -1,51 +1,51 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import "./sidebarbranch.css";
 
-import { Link, Outlet } from "react-router-dom";
-
-export default function Sidebar() {
+const Sidebar = () => {
   return (
-    <div>
-      <div className="sidebar">
-        <div className="sidebarWrapper">
-          <div className="sidebarMenu">
-            <h3 className="sidebarTitle">Dashboard</h3>
-            <ul className="sidebarList">
-              <Link to="/layout/home" className="link">
-                <li className="sidebarListItem">
-                  <span className="sidebarIcon">
-                    <i class="ri-align-justify"></i>
-                  </span>
-                  Home
-                </li>
+    <div className="sidebar">
+      <div className="sidebarWrapper">
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Dashboard</h3>
+          <ul className="sidebarList">
+            <li className="sidebarListItem">
+              <Link to="." className="link">
+                <span className="sidebarIcon">
+                  <i className="ri-align-justify"></i>
+                </span>
+                Home
               </Link>
-              <Link to="/layout/branchalytics" className="link">
-                <li className="sidebarListItem">
-                  <span className="sidebarIcon">
-                    <i class="ri-building-line"></i>
-                  </span>
-                  Branchalytics
-                </li>
+            </li>
+            <li className="sidebarListItem">
+              <Link to="branchalytics" className="link">
+                <span className="sidebarIcon">
+                  <i className="ri-building-line"></i>
+                </span>
+                Branchalytics
               </Link>
-              <Link to="/layout/service_requests" className="link">
-                <li className="sidebarListItem">
-                  <span className="sidebarIcon">
-                    <i class="ri-file-chart-line"></i>
-                  </span>
-                  Service Requests
-                </li>
+            </li>
+            <li className="sidebarListItem">
+              <Link to="service_requests" className="link">
+                <span className="sidebarIcon">
+                  <i className="ri-file-chart-line"></i>
+                </span>
+                Service Requests
               </Link>
-              <Link to="/layout/feedback" className="link">
-                <li className="sidebarListItem">
-                  <span className="sidebarIcon">
-                    <i class="ri-feedback-fill"></i>
-                  </span>
-                  Feedback
-                </li>
+            </li>
+            <li className="sidebarListItem">
+              <Link to="feedback" className="link">
+                <span className="sidebarIcon">
+                  <i className="ri-feedback-fill"></i>
+                </span>
+                Feedback
               </Link>
-            </ul>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Sidebar;

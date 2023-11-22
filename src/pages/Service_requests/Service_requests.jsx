@@ -58,7 +58,7 @@ const Service_requests = () => {
   return (
     <div className="tablecontainer">
       <div className="filter-dropdown">
-        <label htmlFor="statusFilter">Filter by Status:</label>
+        <label htmlFor="statusFilter">Filter by Status</label>
         <select
           id="statusFilter"
           value={filterStatus}
@@ -68,7 +68,6 @@ const Service_requests = () => {
           <option value="All">All</option>
           <option value="Assigned">Assigned</option>
           <option value="Completed">Completed</option>
-          <option value="Pending">Pending</option>
         </select>
       </div>
       <table className="service-table">
@@ -78,10 +77,9 @@ const Service_requests = () => {
             <th>Customer Name</th>
             <th>Employee Name</th>
             <th>Service ID</th>
+            <th>Status</th>
             <th>Start Time</th>
             <th>End Time</th>
-            <th>Status</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -90,20 +88,20 @@ const Service_requests = () => {
               <td>{service.id}</td>
               <td>{service.customer_name}</td>
               <td>{service.employee_name}</td>
-              <td>{service.service_id}</td>
+              <td>{service.service_name}</td>
+              <td
+                className={
+                  service.status === "Completed"
+                    ? "completed"
+                    : service.status === "Pending"
+                    ? "pending"
+                    : "assigned"
+                }
+              >
+                {service.status}
+              </td>
               <td>{service.start_time}</td>
               <td>{service.end_time}</td>
-              <td>{service.status}</td>
-              <td>
-                <td>
-                  <i
-                    className="ri-delete-bin-line"
-                    onClick={() => deleteData(service.id)}
-                    style={{ cursor: "pointer" }}
-                  ></i>
-                </td>
-                <button onClick={() => updateData(service.id)}>Edit</button>
-              </td>
             </tr>
           ))}
         </tbody>
