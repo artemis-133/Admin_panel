@@ -1,6 +1,6 @@
 import "./featuredInfo.css";
 
-const FeaturedInfo = () => {
+const FeaturedInfo = (props) => {
   return (
     <div className="featured">
       <div className="featuredItem">
@@ -11,7 +11,7 @@ const FeaturedInfo = () => {
           Employees
         </span>
         <div className="featuredData">
-          <span className="dataValue">2,415</span>
+          <span className="dataValue">{props.employees}</span>
         </div>
       </div>
 
@@ -23,7 +23,7 @@ const FeaturedInfo = () => {
           Customers
         </span>
         <div className="featuredData">
-          <span className="dataValue">172,000</span>
+          <span className="dataValue">{props.customers}</span>
         </div>
       </div>
 
@@ -35,7 +35,7 @@ const FeaturedInfo = () => {
           Sales
         </span>
         <div className="featuredData">
-          <span className="dataValue">2100</span>
+          <span className="dataValue">{props.sales}</span>
         </div>
       </div>
     </div>

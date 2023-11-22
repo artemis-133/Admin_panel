@@ -5,5 +5,6 @@ export const userData = [
   { month: "April", sales: 1800 },
   { month: "May", sales: 2400 },
   { month: "June", sales: 2100 },
+  {month: "July", sales: 1400}
   // Add more months and corresponding sales data as needed
 ];

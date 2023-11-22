@@ -1,9 +1,9 @@
-import { configureStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 // Initial state
 const initialState = {
-  token: null,
+  token: "agshshjs",
   branchId: null,
   role: null,
 };
@@ -40,6 +40,6 @@ export const clearAuthData = () => ({
 });
 
 // Store
-const store = configureStore(authReducer, applyMiddleware(thunk));
+const store = createStore(authReducer, applyMiddleware(thunk));
 
 export default store;
