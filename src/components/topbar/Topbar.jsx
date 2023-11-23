@@ -11,6 +11,7 @@ const Topbar = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.branch.token);
   const branchId = useSelector((state) => state.branch.branchId);
+  const role = useSelector((state) => state.branch.role);
 
 
   useEffect(() => {
@@ -52,8 +53,8 @@ const Topbar = () => {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-        <span className="logo">{branchName}</span>
-          <span className="logo">{adminName}</span>
+        <span className="logo1">{branchName}</span>
+          <span className="logo2">{role==='admin'?"Head Admin":"Branch Admin"}</span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">

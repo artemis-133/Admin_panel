@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 //import APIService from './APIservice';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const AdminChart = (props) => {
+const AdminChart2 = (props) => {
   
   return (
     <div className="charts">
@@ -22,7 +22,7 @@ const AdminChart = (props) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="Customers" fill="#90EE90" />
+          <Bar dataKey="Sales" fill="#90EE90" />
         </BarChart>
       </ResponsiveContainer>
       
@@ -30,4 +30,4 @@ const AdminChart = (props) => {
   );
 };
 
-export default AdminChart;
+export default AdminChart2;
