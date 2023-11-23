@@ -1,14 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import axios
 import "./Service_request.css"; // Import the CSS file
+import { useSelector } from "react-redux";
 
 const Service_requests = () => {
   const [serviceData, setServiceData] = useState([]); // Initialize serviceData as an empty array
   const [filterStatus, setFilterStatus] = useState("All");
 
+  const token = useSelector((state) => state.branch.token);
+  const branchId = useSelector((state) => state.branch.branchId);
+
+
+  axios.interceptors.request.use(
+    config=>{
+      config.headers.authorization="Bearer "+token;
+      return config;
+    },
+    error=>{
+      return Promise.reject(error)
+    }
+  );
+
   const fetchData = () => {
     axios
-      .get("http://localhost:3500/service_requests") // Assuming 'service_requests' is your endpoint
+      .get(`http://localhost:8088/getallservicerequestperbranch/${branchId}`) // Assuming 'service_requests' is your endpoint
       .then((response) => {
         setServiceData(response.data);
       })
@@ -17,30 +32,34 @@ const Service_requests = () => {
       });
   };
 
-  const deleteData = (id) => {
-    axios
-      .delete(`http://localhost:3500/service_requests/${id}`)
-      .then((response) => {
-        fetchData(); // Refresh data after deletion
-      })
-      .catch((error) => {
-        console.error("Error deleting data:", error);
-      });
-  };
+  // const deleteData = (id) => {
+  //   axios
+  //     .delete(`http://localhost:3500/service_requests/${id}`)
+  //     .then((response) => {
+  //       fetchData(); // Refresh data after deletion
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error deleting data:", error);
+  //     });
+  // };
 
-  const updateData = (id, updatedData) => {
-    axios
-      .put(`http://localhost:3500/service_requests/${id}`, updatedData)
-      .then((response) => {
-        fetchData(); // Refresh data after update
-      })
-      .catch((error) => {
-        console.error("Error updating data:", error);
-      });
-  };
+  // const updateData = (id, updatedData) => {
+  //   axios
+  //     .put(`http://localhost:3500/service_requests/${id}`, updatedData)
+  //     .then((response) => {
+  //       fetchData(); // Refresh data after update
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error updating data:", error);
+  //     });
+  // };
 
   const handleFilterChange = (event) => {
-    setFilterStatus(event.target.value);
+    console.log(event.target.value)
+    setFilterStatus(event.target.value)
+    // if(event.target.value === "Completed") setFilterStatus("completed")
+    // if(event.target.value === "Pending") setFilterStatus("pending")
+    // if(event.target.value === "All") setFilterStatus("All")
   };
 
   const filteredServiceData = serviceData.filter((service) => {
@@ -50,6 +69,8 @@ const Service_requests = () => {
       return service.status === filterStatus;
     }
   });
+
+  console.log(filterStatus)
 
   useEffect(() => {
     fetchData();
@@ -66,8 +87,8 @@ const Service_requests = () => {
           className="dropdown-select"
         >
           <option value="All">All</option>
-          <option value="Assigned">Assigned</option>
-          <option value="Completed">Completed</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
         </select>
       </div>
       <table className="service-table">
@@ -76,32 +97,36 @@ const Service_requests = () => {
             <th>ID</th>
             <th>Customer Name</th>
             <th>Employee Name</th>
-            <th>Service ID</th>
+            <th>Service Name</th>
             <th>Status</th>
             <th>Start Time</th>
             <th>End Time</th>
           </tr>
         </thead>
         <tbody>
-          {filteredServiceData.map((service) => (
+          {filteredServiceData.map((service,index) => (
             <tr key={service.id}>
-              <td>{service.id}</td>
-              <td>{service.customer_name}</td>
-              <td>{service.employee_name}</td>
-              <td>{service.service_name}</td>
+              <td>{index+1}</td>
+              <td>{service.customername}</td>
+              <td>{service.employeename}</td>
+              <td>{service.servicename}</td>
               <td
                 className={
-                  service.status === "Completed"
+                  service.status === "completed"
                     ? "completed"
-                    : service.status === "Pending"
+                    : service.status === "pending"
                     ? "pending"
                     : "assigned"
                 }
               >
-                {service.status}
+                {service.status === "completed"
+                    ? "Completed"
+                    : service.status === "pending"
+                    ? "Pending"
+                    : "assigned"}
               </td>
-              <td>{service.start_time}</td>
-              <td>{service.end_time}</td>
+              <td>{service.starttime}</td>
+              <td>{service.endtime}</td>
             </tr>
           ))}
         </tbody>

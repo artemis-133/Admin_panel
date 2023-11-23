@@ -1,6 +1,4 @@
-// App.js
 import React from "react";
-// import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import { BrowserRouter as Routers, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
@@ -11,7 +9,6 @@ import Branchalytics from "./pages/Branchalytics/Branchalytics";
 import Feedback from "./pages/Feedback/Feedback";
 import Service_requests from "./pages/Service_requests/Service_requests";
 import Structure from "./Structure";
-import Routing from "./routers/Routing";
 
 const App = () => {
   return (

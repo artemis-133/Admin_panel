@@ -7,28 +7,39 @@ const BasicInfo = () => {
     const [employees, setEmployees] = useState([]);
     const [customers, setCustomers] = useState([]);
     const [sales, setSales] = useState([]);
-
-    const { token, branchId, role } = useSelector((state) => state);
+    const token = useSelector((state) => state.branch.token);
+    const branchId = useSelector((state) => state.branch.branchId);
+    const role = useSelector((state) => state.branch.role);
 
     useEffect(() => {
-        axios.get("backend url to get employees using branch id", {
-            headers: { Authorization: `Bearer ${token}` },
-        })
+        
+        axios.interceptors.request.use(
+            config=>{
+              config.headers.authorization="Bearer "+token;
+              return config;
+            },
+            error=>{
+              return Promise.reject(error)
+            }
+          );
+
+        axios.get(`http://localhost:9000/employees/${branchId}`)
         .then((response) => setEmployees(response.data))
         .catch((error) => console.error("Error fetching employees", error));
 
-        axios.get(`backend url to get customers using branch id`, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
+        axios.get(`http://localhost:8087/totalcustomer/${branchId}`)
         .then((response) => setCustomers(response.data))
         .catch((error) => console.error("Error fetching customers", error));
 
-        axios.get(`backend url to get sales using branch id`, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
+        axios.get(`http://localhost:8088/servicesoldperbranch/${branchId}`)
         .then((response) => setSales(response.data))
         .catch((error) => console.error("Error fetching sales", error));
-    }, [token, branchId, role]);
+    }, []);
+
+
+    console.log(employees)
+    console.log(customers)
+    console.log(sales)
 
     return (
         <div>

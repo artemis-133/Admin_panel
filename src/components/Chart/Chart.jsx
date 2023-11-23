@@ -13,12 +13,29 @@ import {
 } from "recharts";
 import { countDataByMonth } from "../../dummyData";
 import { format, parse } from "date-fns";
+import { useSelector } from "react-redux";
 
 export default function Chart({ title, dataKey, grid }) {
+
   const [backend, setBack] = useState([]);
+  const token = useSelector((state) => state.branch.token);
+  const branchId = useSelector((state) => state.branch.branchId);
+
 
   useEffect(() => {
-    axios.get("http://localhost:3501/chartdata").then((response) => {
+    
+    axios.interceptors.request.use(
+      config=>{
+        config.headers.authorization="Bearer "+token;
+        return config;
+      },
+      error=>{
+        return Promise.reject(error)
+      }
+    );
+
+    //getting all servicerequest at branch
+    axios.get(`http://localhost:8088/getallservicerequestperbranch/${branchId}`).then((response) => {
       setBack(response.data);
     });
   }, []);
@@ -48,7 +65,7 @@ export default function Chart({ title, dataKey, grid }) {
   return (
     <div className="chart">
       <h3 className="chartTitle">{title}</h3>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="120%" height={400}>
         <BarChart
           data={data}
           margin={{

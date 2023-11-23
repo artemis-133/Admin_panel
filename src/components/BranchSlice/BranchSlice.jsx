@@ -8,31 +8,36 @@ const BranchSlice = createSlice({
     branchId: null,
     role: null,
     branchIdSelectedByHeadAdmin: null,
-    chartdata:[]
+    adminName:null,
+    branchName:null
   },
   reducers: {
     setAuthData: (state, action) => {
       state.token = action.payload.Token;
       state.role = action.payload.Role;
       state.branchId = action.payload.BranchId;
-      console.log("in slice" + action.payload.Token);
     },
     setBranchIdSelectedByHeadAdmin: (state, action) => {
       state.branchIdSelectedByHeadAdmin = action.payload.id;
     },
-    clearAuthData: (state, action) => {
+    clearAuthData: (state) => {
       state.token = null;
       state.role = null;
       state.branchId = null;
       state.branchIdSelectedByHeadAdmin = null;
+      state.adminName=null;
+      state.branchName=null;
     },
-    setChartData:(state,action)=>{
-      state.chartdata=action.payload;
+    setAdminName:(state,action)=>{
+      state.adminName=action.payload;
+    },
+    setBranchName:(state,action)=>{
+      state.branchName=action.payload;
     }
   },
 });
 
-export const { clearAuthData, setAuthData, setBranchIdSelectedByHeadAdmin } =
+export const {setAdminName,setBranchName, clearAuthData, setAuthData, setBranchIdSelectedByHeadAdmin } =
   BranchSlice.actions;
 
 export default BranchSlice.reducer;

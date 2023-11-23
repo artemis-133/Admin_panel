@@ -2,14 +2,32 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import "./Feedback.css"; // Import the CSS file
+import { useSelector } from "react-redux";
 
 const FeedbackTable = () => {
   const [feedbackData, setFeedbackData] = useState([]); // Initialize feedbackData as an empty array
   const [filterRating, setFilterRating] = useState("All");
 
+  
+  const token = useSelector((state) => state.branch.token);
+  const branchId = useSelector((state) => state.branch.branchId);
+
+
+  axios.interceptors.request.use(
+    config=>{
+      config.headers.authorization="Bearer "+token;
+      return config;
+    },
+    error=>{
+      return Promise.reject(error)
+    }
+  );
+
+
   const fetchFeedbackData = () => {
+    //getfeedbacksperbranch/{id}
     axios
-      .get(" http://localhost:3502/feedbackdata") // Replace the URL with your API endpoint
+      .get(`http://localhost:8000/getfeedbacksperbranch/${branchId}`) // Replace the URL with your API endpoint
       .then((response) => {
         setFeedbackData(response.data);
       })
@@ -72,12 +90,12 @@ const FeedbackTable = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredFeedbackData.map((feedback) => (
+          {filteredFeedbackData.map((feedback,index) => (
             <tr key={feedback.id}>
-              <td>{feedback.id}</td>
-              <td>{feedback.customer_name}</td>
-              <td>{feedback.employee_name}</td>
-              <td>{feedback.service_name}</td>
+              <td>{index+1}</td>
+              <td>{feedback.customername}</td>
+              <td>{feedback.employeename}</td>
+              <td>{feedback.servicename}</td>
               <td>{renderStars(feedback.rating)}</td>
             </tr>
           ))}

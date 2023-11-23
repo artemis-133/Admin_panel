@@ -1,7 +1,15 @@
 /* Branchalytics.css */
 
 /* Styling for the table of services */
-.Branchalytics {
+.Bcss {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Horizontally center items */
+    text-align: center; /* Center text content */
+    /* Add additional styles as needed */
+  }
+
+  .title {
     display: flex;
     flex-direction: column;
     align-items: center; /* Horizontally center items */
@@ -10,6 +18,7 @@
   }
   
 .tableContainer {
+  align-content: center;
     flex: 1;
     margin: 0 20px;
     padding: 30px;
@@ -49,9 +58,17 @@
     font-size: 30px;
     font-weight: 600;
   }
+
+  .fdd{
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    align-items: center;
+  }
   
   /* Styles for the shared classes */
-  .featured {
+  .ftd {
+    flex-direction: column;
     width: 100%;
     display: flex;
     justify-content: space-between;
